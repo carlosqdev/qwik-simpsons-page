@@ -12,12 +12,12 @@ export interface Characters {
 }
 
 export interface Character {
-  _id: string;
+  _id?: string;
   Nombre: string;
   Historia: string;
   Imagen: string;
-  Genero: string;
-  Estado: string;
+  Genero?: string;
+  Estado?: string;
   Ocupacion: string;
   updatedAt?: Date;
 }

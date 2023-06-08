@@ -1,9 +1,12 @@
 import { component$, useTask$, useSignal } from "@builder.io/qwik";
 import type { DocumentHead } from "@builder.io/qwik-city";
+
+import Card from "~/components/card/card";
+
 import type { Characters } from "~/types";
 
 export default component$(() => {
-  const data = useSignal<Characters>();
+  const dataCharacters = useSignal<Characters>();
 
   useTask$(async () => {
     async function getCharacter() {
@@ -15,23 +18,23 @@ export default component$(() => {
       return characters;
     }
 
-    data.value = await getCharacter();
+    dataCharacters.value = await getCharacter();
   });
 
   return (
-    <>
-      <section>
-        <ul>
-          {data.value?.docs.map((doc) => (
-            <li key={doc._id}>
-              <p>{doc.Nombre}</p>
-              <span>{doc.Ocupacion}</span>
-              <img width={250} height={329} src={doc.Imagen} alt={doc.Nombre} />
-            </li>
-          ))}
-        </ul>
-      </section>
-    </>
+    <section class="container">
+      <ul class="w-[90%] m-auto flex flex-wrap justify-center gap-4 md:gap-10 lg:w-[70%]">
+        {dataCharacters.value?.docs.map((doc) => (
+          <Card
+            key={doc._id}
+            Nombre={doc.Nombre}
+            Ocupacion={doc.Ocupacion}
+            Imagen={doc.Imagen}
+            Historia={doc.Historia}
+          />
+        ))}
+      </ul>
+    </section>
   );
 });
 
