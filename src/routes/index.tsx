@@ -23,7 +23,7 @@ export default component$(() => {
 
   return (
     <section class="container">
-      <ul class="w-[90%] m-auto flex flex-wrap justify-center gap-4 md:gap-10 lg:w-[70%]">
+      <ul class="w-[90%] py-8 m-auto flex flex-wrap justify-center gap-4 md:gap-10 lg:w-[70%]">
         {dataCharacters.value?.docs.map((doc) => (
           <Card
             key={doc._id}
